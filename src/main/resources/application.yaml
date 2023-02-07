@@ -1,0 +1,62 @@
+# Anything that goes here is made globally for all profiles.
+spring:
+  application:
+    name: tmem-auth
+  datasource:
+    url: jdbc:h2:mem:~/authdb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate.ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console.enabled: true
+  sql:
+    init.mode: always
+
+---
+# Anything that goes here is made specifically for dev's profile.
+spring:
+  profiles: dev
+
+---
+# Anything that goes here is made specifically for clouds's profile.
+# Cloud is the default profile that Google Cloud Foundry makes your application use if you do not override it.
+spring:
+  profiles: cloud, default
+server:
+  port: 8080
+
+tmem-fems: http://34.66.232.250
+tmem-comment: http://35.223.168.0
+tmem-post: http://34.133.209.206
+tmem-ui: http://34.123.198.172
+tmem-user: http://34.132.53.102
+
+
+---
+# Anything that goes here is made specifically for local's profile.
+spring:
+  profiles: local
+
+server:
+  port: 8081
+
+tmem-fems: http://localhost:8080
+tmem-comment: http://35.223.168.0
+tmem-post: http://34.133.209.206
+tmem-ui: http://localhost:4200
+tmem-user: http://34.132.53.102
+
+---
+spring:
+  profiles: test
+
+tmem-fems: http://localhost:8080
+tmem-comment: http://localhost:8110
+tmem-post: http://localhost:8100
+tmem-ui: http://localhost:4200
+tmem-user: http://localhost:8090
